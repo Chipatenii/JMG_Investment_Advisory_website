@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JMG Investment Advisory — Insight. Clarity. Confidence.</title>
+<meta name="description" content="JMG Investment Advisory is a dynamic investment advisory firm unlocking business growth across emerging and established markets in Zambia and beyond." />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#0A1633',   // deep navy
+          navy:   '#0E2A6B',   // navy from profile
+          royal:  '#1E50C8',   // bright blue from profile
+          sky:    '#5A8DF0',
+          gold:   '#F6B221',   // amber/gold from profile
+          paper:  '#F6F7FB',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Decorative grid / mesh background for hero */
+  .hero-mesh {
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, rgba(30,80,200,0.55), transparent 60%),
+      radial-gradient(40rem 30rem at 10% 110%, rgba(246,178,33,0.18), transparent 60%),
+      linear-gradient(160deg, #0A1633 0%, #0E2A6B 60%, #0A1633 100%);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Staggered hero reveal */
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise { opacity: 0; animation: riseIn .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay:.08s } .d2 { animation-delay:.20s } .d3 { animation-delay:.32s }
+  .d4 { animation-delay:.44s } .d5 { animation-delay:.56s } .d6 { animation-delay:.68s }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Animated bar logo */
+  @keyframes barGrow { from { transform: scaleY(.2);} to { transform: scaleY(1);} }
+  .logo-bar { transform-origin: bottom; animation: barGrow .7s ease forwards; }
+
+  .underline-gold { position: relative; }
+  .underline-gold::after {
+    content:""; position:absolute; left:0; bottom:-6px; height:3px; width:100%;
+    background: #F6B221; border-radius:2px;
+  }
+
+  /* Service card hover */
+  .svc-card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+  .svc-card:hover { transform: translateY(-8px); box-shadow: 0 26px 50px -22px rgba(14,42,107,.45); }
+
+  .ticker { animation: scrollX 32s linear infinite; }
+  @keyframes scrollX { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+  ::selection { background:#F6B221; color:#0A1633; }
+</style>
+</head>
+
+<body class="font-sans bg-paper text-ink antialiased">
+
+<!-- ============ NAV ============ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-[78px]">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <svg width="40" height="40" viewBox="0 0 40 40" class="shrink-0">
+          <rect x="6"  y="22" width="6" height="12" rx="1" class="fill-royal logo-bar" style="animation-delay:.05s"/>
+          <rect x="15" y="14" width="6" height="20" rx="1" class="fill-ink logo-bar" style="animation-delay:.18s"/>
+          <rect x="24" y="6"  width="6" height="28" rx="1" class="fill-gold logo-bar" style="animation-delay:.31s"/>
+        </svg>
+        <div class="leading-none">
+          <div id="logo-word" class="font-display font-700 text-[22px] tracking-tight text-white">JMG</div>
+          <div id="logo-sub" class="text-[9px] tracking-[0.32em] text-gold font-600 mt-[2px]">INVESTMENT ADVISORY</div>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <nav class="hidden lg:flex items-center gap-9">
+        <a href="#about"    class="nav-link text-sm font-500 text-white/85 hover:text-gold transition">About</a>
+        <a href="#services" class="nav-link text-sm font-500 text-white/85 hover:text-gold transition">Services</a>
+        <a href="#insights" class="nav-link text-sm font-500 text-white/85 hover:text-gold transition">Insights</a>
+        <a href="#contact"  class="nav-link text-sm font-500 text-white/85 hover:text-gold transition">Contact</a>
+        <a href="#contact" class="text-sm font-600 bg-gold text-ink px-5 py-2.5 rounded-full hover:bg-white transition-all">
+          Book a Consultation
+        </a>
+      </nav>
+
+      <!-- Mobile toggle -->
+      <button id="menuBtn" class="lg:hidden text-white p-2" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden bg-ink/98 backdrop-blur border-t border-white/10">
+    <div class="px-6 py-5 flex flex-col gap-1">
+      <a href="#about"    class="mlink py-3 text-white/90 border-b border-white/5">About</a>
+      <a href="#services" class="mlink py-3 text-white/90 border-b border-white/5">Services</a>
+      <a href="#insights" class="mlink py-3 text-white/90 border-b border-white/5">Insights</a>
+      <a href="#contact"  class="mlink py-3 text-white/90 border-b border-white/5">Contact</a>
+      <a href="#contact"  class="mlink mt-3 text-center font-600 bg-gold text-ink px-5 py-3 rounded-full">Book a Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative hero-mesh text-white overflow-hidden">
+  <div class="absolute inset-0 grid-lines"></div>
+  <!-- decorative giant chart bars -->
+  <div class="absolute right-[-40px] bottom-0 hidden md:flex items-end gap-3 opacity-[0.12] pointer-events-none">
+    <div class="w-14 h-40 bg-white rounded-t-lg"></div>
+    <div class="w-14 h-64 bg-white rounded-t-lg"></div>
+    <div class="w-14 h-96 bg-gold rounded-t-lg"></div>
+    <div class="w-14 h-52 bg-white rounded-t-lg"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-44 pb-28 lg:pt-52 lg:pb-36">
+    <p class="rise d1 inline-flex items-center gap-2 text-xs sm:text-sm font-600 tracking-[0.18em] text-gold uppercase mb-7">
+      <span class="w-8 h-px bg-gold"></span> Investment Advisory · Lusaka, Zambia
+    </p>
+
+    <h1 class="rise d2 font-display font-600 leading-[1.02] tracking-tight text-[2.7rem] sm:text-6xl lg:text-[5rem] max-w-4xl">
+      Powering <span class="italic text-gold">smarter</span> investment decisions.
+    </h1>
+
+    <p class="rise d3 mt-7 text-base sm:text-lg text-white/75 max-w-2xl leading-relaxed">
+      A dynamic advisory firm unlocking business growth across emerging and established markets — guiding clients
+      from concept to capitalisation and long-term value creation.
+    </p>
+
+    <div class="rise d4 mt-10 flex flex-wrap gap-4">
+      <a href="#contact" class="group inline-flex items-center gap-2 bg-gold text-ink font-600 px-7 py-3.5 rounded-full hover:bg-white transition-all">
+        Book a Consultation
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#services" class="inline-flex items-center gap-2 border border-white/30 text-white font-600 px-7 py-3.5 rounded-full hover:bg-white/10 transition-all">
+        Explore Our Services
+      </a>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="rise d5 mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden max-w-3xl border border-white/10">
+      <div class="bg-ink/40 px-5 py-5">
+        <p class="text-gold text-xs font-600 tracking-wider uppercase">Registered</p>
+        <p class="text-sm text-white/85 mt-1">Companies Act, 2017</p>
+      </div>
+      <div class="bg-ink/40 px-5 py-5">
+        <p class="text-gold text-xs font-600 tracking-wider uppercase">PACRA Reg. No.</p>
+        <p class="text-sm text-white/85 mt-1">120261043780</p>
+      </div>
+      <div class="bg-ink/40 px-5 py-5">
+        <p class="text-gold text-xs font-600 tracking-wider uppercase">ZRA TPIN</p>
+        <p class="text-sm text-white/85 mt-1">2004482527</p>
+      </div>
+      <div class="bg-ink/40 px-5 py-5">
+        <p class="text-gold text-xs font-600 tracking-wider uppercase">Based In</p>
+        <p class="text-sm text-white/85 mt-1">Lusaka, Zambia</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- tagline ticker -->
+  <div class="relative border-t border-white/10 bg-ink/60 overflow-hidden">
+    <div class="flex ticker whitespace-nowrap py-3.5">
+      <div class="flex items-center text-white/55 text-sm font-500 tracking-wide">
+        <span class="px-8">Insight</span><span class="text-gold">◆</span>
+        <span class="px-8">Clarity</span><span class="text-gold">◆</span>
+        <span class="px-8">Confidence</span><span class="text-gold">◆</span>
+        <span class="px-8">Powering Smarter Decisions</span><span class="text-gold">◆</span>
+        <span class="px-8">Sustainable Value Creation</span><span class="text-gold">◆</span>
+      </div>
+      <div class="flex items-center text-white/55 text-sm font-500 tracking-wide" aria-hidden="true">
+        <span class="px-8">Insight</span><span class="text-gold">◆</span>
+        <span class="px-8">Clarity</span><span class="text-gold">◆</span>
+        <span class="px-8">Confidence</span><span class="text-gold">◆</span>
+        <span class="px-8">Powering Smarter Decisions</span><span class="text-gold">◆</span>
+        <span class="px-8">Sustainable Value Creation</span><span class="text-gold">◆</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 lg:py-32 bg-paper">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <!-- Left: heading -->
+      <div class="lg:col-span-5 reveal">
+        <p class="text-xs font-600 tracking-[0.2em] text-royal uppercase mb-4">— Company Overview</p>
+        <h2 class="font-display font-600 text-4xl lg:text-5xl leading-[1.07] text-ink">
+          A partner in growth, from concept to capitalisation.
+        </h2>
+        <div class="mt-8 flex items-end gap-8">
+          <div>
+            <div class="font-display text-5xl font-600 text-royal">8+</div>
+            <p class="text-sm text-ink/60 mt-1">Advisory service lines</p>
+          </div>
+          <div>
+            <div class="font-display text-5xl font-600 text-gold">2026</div>
+            <p class="text-sm text-ink/60 mt-1">Incorporated in Zambia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: text -->
+      <div class="lg:col-span-7 reveal space-y-5">
+        <p class="text-lg text-ink/75 leading-relaxed">
+          JMG Investment Advisory is a dynamic investment advisory firm dedicated to unlocking business growth
+          opportunities across emerging and established markets. We partner with businesses, investors, and
+          institutions to deliver tailored financial and strategic solutions that drive sustainable value creation.
+        </p>
+        <p class="text-lg text-ink/75 leading-relaxed">
+          With a multidisciplinary team of experts, we combine deep market insight, research, innovation, and
+          practical execution capabilities to support clients throughout the entire investment or project
+          lifecycle — from concept to capitalisation and long-term growth.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mission / Vision -->
+    <div class="grid md:grid-cols-2 gap-6 mt-16">
+      <div class="reveal bg-ink text-white rounded-3xl p-9 lg:p-11 relative overflow-hidden">
+        <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-royal/30 blur-2xl"></div>
+        <div class="relative">
+          <div class="w-12 h-12 rounded-xl bg-royal/30 flex items-center justify-center mb-5">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+          </div>
+          <h3 class="font-display text-2xl font-600 mb-3">Our Vision</h3>
+          <p class="text-white/70 leading-relaxed">
+            To be a trusted partner in investment advisory, driving inclusive growth and sustainable
+            development across industries and sectors.
+          </p>
+        </div>
+      </div>
+      <div class="reveal bg-white border border-ink/10 rounded-3xl p-9 lg:p-11 relative overflow-hidden">
+        <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-gold/15 blur-2xl"></div>
+        <div class="relative">
+          <div class="w-12 h-12 rounded-xl bg-gold/15 flex items-center justify-center mb-5">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E50C8" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3 class="font-display text-2xl font-600 mb-3 text-ink">Our Mission</h3>
+          <p class="text-ink/65 leading-relaxed">
+            To provide innovative, reliable, and impactful investment advisory services that empower
+            businesses and investors to achieve their full potential.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core values -->
+    <div class="mt-16 reveal">
+      <p class="text-xs font-600 tracking-[0.2em] text-royal uppercase mb-7">— Core Values</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-ink/10 rounded-2xl overflow-hidden border border-ink/10">
+        <div class="bg-white p-7 hover:bg-paper transition">
+          <span class="font-display text-3xl font-600 text-gold/40">01</span>
+          <h4 class="font-display text-lg font-600 mt-3 text-ink">Integrity</h4>
+          <p class="text-sm text-ink/60 mt-1.5">We uphold the highest ethical standards.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-paper transition">
+          <span class="font-display text-3xl font-600 text-gold/40">02</span>
+          <h4 class="font-display text-lg font-600 mt-3 text-ink">Excellence</h4>
+          <p class="text-sm text-ink/60 mt-1.5">Quality and precision in every engagement.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-paper transition">
+          <span class="font-display text-3xl font-600 text-gold/40">03</span>
+          <h4 class="font-display text-lg font-600 mt-3 text-ink">Innovation</h4>
+          <p class="text-sm text-ink/60 mt-1.5">We embrace forward-thinking solutions.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-paper transition">
+          <span class="font-display text-3xl font-600 text-gold/40">04</span>
+          <h4 class="font-display text-lg font-600 mt-3 text-ink">Collaboration</h4>
+          <p class="text-sm text-ink/60 mt-1.5">We build strong, lasting partnerships.</p>
+        </div>
+        <div class="bg-white p-7 hover:bg-paper transition">
+          <span class="font-display text-3xl font-600 text-gold/40">05</span>
+          <h4 class="font-display text-lg font-600 mt-3 text-ink">Sustainability</h4>
+          <p class="text-sm text-ink/60 mt-1.5">We promote responsible, inclusive growth.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 lg:py-32 bg-ink text-white relative overflow-hidden">
+  <div class="absolute inset-0 grid-lines opacity-60"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="max-w-2xl reveal">
+      <p class="text-xs font-600 tracking-[0.2em] text-gold uppercase mb-4">— Our Services</p>
+      <h2 class="font-display font-600 text-4xl lg:text-5xl leading-[1.08]">
+        Tailored advisory across the <span class="italic text-gold">full investment lifecycle</span>.
+      </h2>
+      <p class="mt-5 text-white/65 text-lg">
+        From raising capital to structuring deals and building enterprise capacity — practical solutions
+        engineered for sustainable value.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
+
+      <!-- 1 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Capital Mobilisation</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Connecting businesses with the right funding — private equity, venture capital, debt financing and
+          strategic investors — aligning expectations for efficient, successful raises.
+        </p>
+      </article>
+
+      <!-- 2 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Deal Structuring</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Designing and negotiating optimal transaction structures — from M&A to joint ventures — that are
+          financially sound, legally robust and strategically aligned.
+        </p>
+      </article>
+
+      <!-- 3 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">ESG &amp; EIA Advisory</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Environmental, Social and Governance advisory including Environmental Impact Assessments — ensuring
+          projects meet regulatory standards and attract responsible investment.
+        </p>
+      </article>
+
+      <!-- 4 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">SME Capacity Building</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Empowering Micro, Small and Medium enterprises with tailored advisory, training and technical
+          support to strengthen efficiency, governance and market readiness.
+        </p>
+      </article>
+
+      <!-- 5 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Research &amp; Insights</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          High-quality, data-driven intelligence — market research, feasibility studies, sector analysis and
+          due diligence — for informed, confident decisions.
+        </p>
+      </article>
+
+      <!-- 6 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Value Chain Development</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Analysing and strengthening value chains to improve efficiency, competitiveness and profitability —
+          creating sustainable linkages across sectors.
+        </p>
+      </article>
+
+      <!-- 7 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Growth Strategy</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Crafting data-driven growth strategies — market entry, expansion planning, product development and
+          performance optimisation — to scale sustainably.
+        </p>
+      </article>
+
+      <!-- 8 -->
+      <article class="svc-card reveal bg-white/[0.04] border border-white/10 rounded-2xl p-7 hover:border-gold/50">
+        <div class="w-12 h-12 rounded-xl bg-royal/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6B221" stroke-width="2"><path d="M12 2L3 7v6c0 5 3.5 8 9 9 5.5-1 9-4 9-9V7l-9-5z"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-600 mb-2">Land Sourcing</h3>
+        <p class="text-sm text-white/60 leading-relaxed">
+          Facilitating access to suitable land for investment projects — identifying, evaluating and securing
+          assets that meet regulatory and commercial requirements.
+        </p>
+      </article>
+
+      <!-- CTA card -->
+      <article class="reveal bg-gold text-ink rounded-2xl p-7 flex flex-col justify-between">
+        <div>
+          <h3 class="font-display text-xl font-600 mb-2">Not sure where to start?</h3>
+          <p class="text-sm text-ink/75 leading-relaxed">
+            Tell us about your business or project and we'll map the right advisory path for you.
+          </p>
+        </div>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-2 font-600 text-sm">
+          Talk to an advisor
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section id="insights" class="py-24 lg:py-32 bg-paper">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+      <div class="max-w-2xl">
+        <p class="text-xs font-600 tracking-[0.2em] text-royal uppercase mb-4">— Research &amp; Insights</p>
+        <h2 class="font-display font-600 text-4xl lg:text-5xl leading-[1.08] text-ink">
+          Intelligence that powers <span class="italic text-royal">smarter decisions</span>.
+        </h2>
+      </div>
+      <p class="text-ink/60 max-w-sm">
+        Download our latest research notes and sector briefs — clear, data-driven perspectives for investors
+        and businesses.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
+
+      <!-- Article 1 -->
+      <article class="reveal group bg-white border border-ink/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="h-40 bg-ink relative overflow-hidden">
+          <div class="absolute inset-0 grid-lines opacity-50"></div>
+          <div class="absolute inset-0 flex items-end p-5 gap-2">
+            <div class="w-7 bg-royal/70 rounded-t" style="height:38%"></div>
+            <div class="w-7 bg-royal/70 rounded-t" style="height:62%"></div>
+            <div class="w-7 bg-gold rounded-t" style="height:88%"></div>
+            <div class="w-7 bg-royal/70 rounded-t" style="height:54%"></div>
+          </div>
+          <span class="absolute top-4 left-4 text-[11px] font-600 tracking-wider uppercase bg-gold text-ink px-2.5 py-1 rounded">Market Research</span>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <p class="text-xs text-ink/45 font-500">Feasibility Study · 2026</p>
+          <h3 class="font-display text-lg font-600 mt-2 text-ink leading-snug">
+            Emerging Market Opportunities: A Zambian Investment Outlook
+          </h3>
+          <p class="text-sm text-ink/60 mt-2 leading-relaxed flex-1">
+            Demand trends, competitive landscapes and the regulatory environment shaping viable
+            opportunities across key sectors.
+          </p>
+          <a href="#" download class="mt-5 inline-flex items-center gap-2 text-sm font-600 text-royal group-hover:gap-3 transition-all">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="reveal group bg-white border border-ink/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="h-40 bg-navy relative overflow-hidden">
+          <div class="absolute inset-0 grid-lines opacity-50"></div>
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 160" preserveAspectRatio="none">
+            <polyline points="0,130 50,110 100,120 150,70 200,85 250,40 300,55" fill="none" stroke="#F6B221" stroke-width="4"/>
+            <polyline points="0,140 50,135 100,130 150,115 200,120 250,100 300,108" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3"/>
+          </svg>
+          <span class="absolute top-4 left-4 text-[11px] font-600 tracking-wider uppercase bg-gold text-ink px-2.5 py-1 rounded">Sector Analysis</span>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <p class="text-xs text-ink/45 font-500">Industry Brief · 2026</p>
+          <h3 class="font-display text-lg font-600 mt-2 text-ink leading-snug">
+            SME Growth Drivers &amp; the Path to Investor Readiness
+          </h3>
+          <p class="text-sm text-ink/60 mt-2 leading-relaxed flex-1">
+            How small and medium enterprises can strengthen governance, financial management and
+            market positioning.
+          </p>
+          <a href="#" download class="mt-5 inline-flex items-center gap-2 text-sm font-600 text-royal group-hover:gap-3 transition-all">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="reveal group bg-white border border-ink/10 rounded-2xl overflow-hidden flex flex-col">
+        <div class="h-40 bg-royal relative overflow-hidden">
+          <div class="absolute inset-0 grid-lines opacity-40"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" opacity="0.85"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <span class="absolute top-4 left-4 text-[11px] font-600 tracking-wider uppercase bg-gold text-ink px-2.5 py-1 rounded">ESG &amp; Policy</span>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <p class="text-xs text-ink/45 font-500">Policy Research · 2026</p>
+          <h3 class="font-display text-lg font-600 mt-2 text-ink leading-snug">
+            ESG Compliance &amp; Responsible Investment in Practice
+          </h3>
+          <p class="text-sm text-ink/60 mt-2 leading-relaxed flex-1">
+            Navigating regulatory frameworks and impact assessments to attract responsible capital and
+            sustainable development.
+          </p>
+          <a href="#" download class="mt-5 inline-flex items-center gap-2 text-sm font-600 text-royal group-hover:gap-3 transition-all">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="text-xs text-ink/40 mt-8 reveal">
+      Reports shown are illustrative placeholders — replace the download links with your published PDF files.
+    </p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-14">
+
+      <!-- Left: details -->
+      <div class="lg:col-span-5 reveal">
+        <p class="text-xs font-600 tracking-[0.2em] text-royal uppercase mb-4">— Contact / Book a Consultation</p>
+        <h2 class="font-display font-600 text-4xl lg:text-5xl leading-[1.08] text-ink">
+          Let's discuss your next move.
+        </h2>
+        <p class="mt-5 text-ink/65 text-lg">
+          Reach out to the JMG team for a consultation — we'll respond promptly and map the right advisory path.
+        </p>
+
+        <div class="mt-9 space-y-3">
+          <!-- Phone -->
+          <a href="tel:+260977824605" class="flex items-center gap-4 p-4 rounded-xl border border-ink/10 hover:border-royal/40 hover:bg-paper transition group">
+            <span class="w-11 h-11 rounded-lg bg-royal/10 flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E50C8" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <p class="text-xs text-ink/50 font-600 uppercase tracking-wider">Phone</p>
+              <p class="text-ink font-500">+260 977 824 605 · 0973 788 015</p>
+            </div>
+          </a>
+          <!-- Email -->
+          <a href="mailto:innicentmelu@jmginvestment.com" class="flex items-center gap-4 p-4 rounded-xl border border-ink/10 hover:border-royal/40 hover:bg-paper transition">
+            <span class="w-11 h-11 rounded-lg bg-royal/10 flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E50C8" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+            </span>
+            <div>
+              <p class="text-xs text-ink/50 font-600 uppercase tracking-wider">Email</p>
+              <p class="text-ink font-500">innicentmelu@jmginvestment.com</p>
+            </div>
+          </a>
+          <!-- Location -->
+          <div class="flex items-center gap-4 p-4 rounded-xl border border-ink/10">
+            <span class="w-11 h-11 rounded-lg bg-royal/10 flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E50C8" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </span>
+            <div>
+              <p class="text-xs text-ink/50 font-600 uppercase tracking-wider">Office</p>
+              <p class="text-ink font-500">No. 06, Salvation Army, Cairo Road, Lusaka, Zambia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp button -->
+        <a href="https://wa.me/260977824605?text=Hello%20JMG%20Investment%20Advisory%2C%20I'd%20like%20to%20book%20a%20consultation."
+           target="_blank" rel="noopener"
+           class="mt-5 w-full inline-flex items-center justify-center gap-3 bg-[#25D366] text-white font-600 px-6 py-4 rounded-xl hover:brightness-95 transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.513 5.26l-.999 3.648 3.985-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+          Chat with us on WhatsApp
+        </a>
+      </div>
+
+      <!-- Right: map + calendly -->
+      <div class="lg:col-span-7 reveal space-y-6">
+        <!-- Google Map -->
+        <div class="rounded-2xl overflow-hidden border border-ink/10 shadow-sm">
+          <iframe
+            title="JMG Investment Advisory location — Cairo Road, Lusaka"
+            src="https://www.google.com/maps?q=Cairo%20Road,%20Lusaka,%20Zambia&output=embed"
+            width="100%" height="320" style="border:0;" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Calendly embed -->
+        <div class="rounded-2xl border border-ink/10 bg-paper p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1633" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </span>
+            <h3 class="font-display text-xl font-600 text-ink">Schedule a Consultation</h3>
+          </div>
+          <!--
+            CALENDLY: replace the data-url below with your real Calendly link,
+            e.g. https://calendly.com/jmg-investment/consultation
+          -->
+          <div class="calendly-inline-widget rounded-xl overflow-hidden bg-white"
+               data-url="https://calendly.com/d/ckdn-2y6-h4q?hide_gdpr_banner=1"
+               style="min-width:320px;height:560px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <p class="text-xs text-ink/40 mt-3">
+            Once your Calendly account is ready, replace the <code>data-url</code> above with your booking link.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink text-white pt-16 pb-8 relative overflow-hidden">
+  <div class="absolute inset-0 grid-lines opacity-40"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <svg width="36" height="36" viewBox="0 0 40 40">
+            <rect x="6"  y="22" width="6" height="12" rx="1" fill="#1E50C8"/>
+            <rect x="15" y="14" width="6" height="20" rx="1" fill="#ffffff"/>
+            <rect x="24" y="6"  width="6" height="28" rx="1" fill="#F6B221"/>
+          </svg>
+          <div class="leading-none">
+            <div class="font-display font-700 text-xl">JMG</div>
+            <div class="text-[9px] tracking-[0.32em] text-gold font-600 mt-[2px]">INVESTMENT ADVISORY</div>
+          </div>
+        </div>
+        <p class="mt-5 text-white/55 text-sm leading-relaxed max-w-sm">
+          Unlocking business growth across emerging and established markets — Insight. Clarity. Confidence.
+        </p>
+        <p class="mt-4 font-display italic text-gold/90 text-sm">Powering Smarter Decisions.</p>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="text-xs font-600 tracking-widest uppercase text-gold mb-4">Navigate</p>
+        <ul class="space-y-2.5 text-sm text-white/65">
+          <li><a href="#about" class="hover:text-white transition">About</a></li>
+          <li><a href="#services" class="hover:text-white transition">Services</a></li>
+          <li><a href="#insights" class="hover:text-white transition">Insights</a></li>
+          <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="text-xs font-600 tracking-widest uppercase text-gold mb-4">Get in Touch</p>
+        <ul class="space-y-2.5 text-sm text-white/65">
+          <li>No. 06, Salvation Army, Cairo Road, Lusaka, Zambia</li>
+          <li><a href="tel:+260977824605" class="hover:text-white transition">+260 977 824 605</a></li>
+          <li><a href="mailto:innicentmelu@jmginvestment.com" class="hover:text-white transition">innicentmelu@jmginvestment.com</a></li>
+          <li><a href="https://www.jmginvestment.com" class="hover:text-white transition">www.jmginvestment.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-7 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/45">
+      <p>© 2026 JMG Investment Advisory Limited. All rights reserved.</p>
+      <p>PACRA Reg. No. 120261043780 · ZRA TPIN 2004482527 · Registered in Zambia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/260977824605?text=Hello%20JMG%20Investment%20Advisory%2C%20I'd%20like%20to%20book%20a%20consultation."
+   target="_blank" rel="noopener" aria-label="WhatsApp"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] shadow-lg shadow-black/25 flex items-center justify-center hover:scale-110 transition-transform">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.513 5.26l-.999 3.648 3.985-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+</a>
+
+<script>
+  /* ---- Nav scroll state ---- */
+  const nav = document.getElementById('nav');
+  const logoWord = document.getElementById('logo-word');
+  function onScroll() {
+    if (window.scrollY > 40) {
+      nav.classList.add('bg-white','shadow-md');
+      nav.querySelectorAll('.nav-link').forEach(l => { l.classList.remove('text-white/85'); l.classList.add('text-ink'); });
+      logoWord.classList.remove('text-white'); logoWord.classList.add('text-ink');
+    } else {
+      nav.classList.remove('bg-white','shadow-md');
+      nav.querySelectorAll('.nav-link').forEach(l => { l.classList.add('text-white/85'); l.classList.remove('text-ink'); });
+      logoWord.classList.add('text-white'); logoWord.classList.remove('text-ink');
+    }
+  }
+  window.addEventListener('scroll', onScroll); onScroll();
+
+  /* ---- Mobile menu ---- */
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  /* ---- Scroll reveal ---- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
