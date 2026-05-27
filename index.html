@@ -64,28 +64,27 @@
   }
 
   .site-nav {
-    background: rgba(9, 21, 39, 0);
+    background: rgba(255, 255, 255, .96);
+    border-color: rgba(9, 21, 39, .08);
+    box-shadow: 0 12px 34px -28px rgba(9, 21, 39, .65);
+    backdrop-filter: blur(18px);
     transition: background .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
 
   .site-nav.is-scrolled,
   .site-nav.menu-open {
-    background: rgba(251, 250, 245, .94);
-    box-shadow: 0 12px 34px -24px rgba(9, 21, 39, .7);
+    background: rgba(255, 255, 255, .98);
+    box-shadow: 0 14px 38px -28px rgba(9, 21, 39, .72);
     border-color: rgba(9, 21, 39, .08);
-    backdrop-filter: blur(18px);
   }
 
-  .site-nav .brand-main,
   .site-nav .nav-link,
   .site-nav .menu-icon {
-    color: white;
+    color: var(--ink);
   }
 
-  .site-nav.is-scrolled .brand-main,
   .site-nav.is-scrolled .nav-link,
   .site-nav.is-scrolled .menu-icon,
-  .site-nav.menu-open .brand-main,
   .site-nav.menu-open .nav-link,
   .site-nav.menu-open .menu-icon {
     color: var(--ink);
@@ -227,18 +226,10 @@
 </head>
 
 <body class="bg-paper text-ink font-sans">
-  <header id="nav" class="site-nav fixed inset-x-0 top-0 z-50 border-b border-transparent">
+  <header id="nav" class="site-nav fixed inset-x-0 top-0 z-50 border-b">
     <div class="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[82px] lg:px-8">
-      <a href="#home" class="flex min-w-0 items-center gap-3" aria-label="JMG Investment Advisory home">
-        <svg width="42" height="42" viewBox="0 0 42 42" class="shrink-0" role="img" aria-label="JMG logo">
-          <rect x="6" y="23" width="7" height="13" rx="2" fill="#2553D9" />
-          <rect x="17" y="15" width="7" height="21" rx="2" fill="#091527" />
-          <rect x="28" y="7" width="7" height="29" rx="2" fill="#F4B942" />
-        </svg>
-        <span class="leading-none">
-          <span class="brand-main block font-display text-[22px] font-bold">JMG</span>
-          <span class="block text-[9px] font-bold uppercase tracking-[0.26em] text-amber">Investment Advisory</span>
-        </span>
+      <a href="#home" class="flex min-w-0 items-center" aria-label="JMG Investment Advisory home">
+        <img src="assets/jmg-logo.png" alt="JMG Investment Advisory" class="h-12 w-[150px] rounded-md object-contain sm:h-14 sm:w-[174px]" />
       </a>
 
       <nav class="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
@@ -246,13 +237,13 @@
         <a href="#services" class="nav-link text-sm font-semibold">Services</a>
         <a href="#insights" class="nav-link text-sm font-semibold">Insights</a>
         <a href="#contact" class="nav-link text-sm font-semibold">Contact</a>
-        <a href="#contact" class="inline-flex items-center gap-2 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-white">
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-md bg-amber px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-ink hover:text-white">
           Book consult
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </nav>
 
-      <button id="menuBtn" class="menu-icon inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 lg:hidden" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <button id="menuBtn" class="menu-icon inline-flex h-11 w-11 items-center justify-center rounded-md border border-ink/10 lg:hidden" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
         <svg class="menu-open-icon" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"/>
         </svg>
@@ -769,16 +760,8 @@
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-12">
         <div class="md:col-span-5">
-          <div class="flex items-center gap-3">
-            <svg width="38" height="38" viewBox="0 0 42 42" aria-hidden="true">
-              <rect x="6" y="23" width="7" height="13" rx="2" fill="#2553D9" />
-              <rect x="17" y="15" width="7" height="21" rx="2" fill="#ffffff" />
-              <rect x="28" y="7" width="7" height="29" rx="2" fill="#F4B942" />
-            </svg>
-            <span class="leading-none">
-              <span class="block font-display text-xl font-bold">JMG</span>
-              <span class="block text-[9px] font-bold uppercase tracking-[0.26em] text-amber">Investment Advisory</span>
-            </span>
+          <div class="inline-flex rounded-md bg-white p-2 shadow-soft">
+            <img src="assets/jmg-logo.png" alt="JMG Investment Advisory" class="h-20 w-auto object-contain" />
           </div>
           <p class="mt-5 max-w-sm text-sm leading-6 text-white/58">Unlocking business growth across emerging and established markets through insight, clarity, and confidence.</p>
           <p class="mt-4 font-display text-sm font-semibold text-amber">Powering smarter decisions.</p>
